@@ -16,8 +16,9 @@ function Home() {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to Recipe Discovery App</p>
+        {categories.map((categories) => (
+            <p key={categories.idCategory}> {categories.strCategory}</p>
+        ))}
     </div>
   );
 }

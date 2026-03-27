@@ -11,7 +11,7 @@ import RecipeDetail from './pages/RecipeDetail'
 function App() {
   return (
   
-    <BrowserRouter> 
+    <BrowserRouter>   
     <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>} />
