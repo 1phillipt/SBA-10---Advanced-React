@@ -1,74 +1,22 @@
-# React + TypeScript + Vite
+First created project using Vite with React + TypeScript
+and used npm create vite@latest recipe-app -- --template react-ts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+did npm install npm  and install react-router-dom
 
-Currently, two official plugins are available:
+I created folder and files below after running above bash commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+src/ components/ pages/ hooks/ context/ types/ api/
 
-## React Compiler
+created these routes in app.tsx
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<Route path="/" element={<Home />} /> <Route path="/category/:name" element={<Category />} /> 
+<Route path="/recipe/:id" element={<RecipeDetail />} /> 
+<Route path="/search" element={<Search />} /> 
+<Route path="/favorites" element={<Favorites />} />
 
-## Expanding the ESLint configuration
+I used TheMealDB API to get recipe data. And I created a custom hook - useFetch(url). takes url and calls api returns data, loading and error
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Category Page fetches meals by category and display list of meals and added navigation to recipe details
+<Link to={`/recipe/${meal.idMeal}`}>
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# SBA-10---Advanced-React
+after this created custom hook -useDebounce(value, delay) and  global state using Context - FavoritesProvider
