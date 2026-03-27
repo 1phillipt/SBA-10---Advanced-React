@@ -9,15 +9,14 @@ function Search() {
   const debouncedQuery = useDebounce(query, 500);
 
   const { data, loading, error } = useFetch<any>(
-    debouncedQuery
-      ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${debouncedQuery}`
-      : null
-  );
+  debouncedQuery
+    ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${debouncedQuery}`
+    : null
+);
 
   return (
     <div>
       <h1>Search Recipes</h1>
-
       <input
         type="text"
         placeholder="Search recipes..."
@@ -29,14 +28,18 @@ function Search() {
       {error && <p>Error</p>}
 
       <div>
-        {data?.meals?.map((meal: any) => (
-          <div key={meal.idMeal}>
-            <Link to={`/recipe/${meal.idMeal}`}>
-              <h3>{meal.strMeal}</h3>
-              <img src={meal.strMealThumb} width="100%" />
-            </Link>
-          </div>
-        ))}
+        {data?.meals?.length ? (
+          data.meals.map((meal: any) => (
+            <div key={meal.idMeal}>
+              <Link to={`/recipe/${meal.idMeal}`}>
+                <img src={meal.strMealThumb} alt={meal.strMeal} width="300"/>
+                <h3>{meal.strMeal}</h3>
+              </Link>
+            </div>
+          ))
+        ) : (
+          debouncedQuery && !loading && <p>No recipes found.</p>
+        )}
       </div>
     </div>
   );
