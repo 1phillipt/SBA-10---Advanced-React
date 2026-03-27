@@ -10,11 +10,20 @@ type FavoritesContextType = {
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
-  const [favorites, setFavorites] = useState<string[]>([]);
+    
+const [favorites, setFavorites] = useState<string[]>(() => {
+  const saved = localStorage.getItem("favorites");
+  return saved ? JSON.parse(saved) : [];
+});
 
+
+  
   const addFavorite = (id: string) => {
-    setFavorites((prev) => [...prev, id]);
-  };
+  setFavorites((prev) => {
+    if (prev.includes(id)) return prev; // prevent duplicate
+    return [...prev, id];
+  });
+};
 
   const removeFavorite = (id: string) => {
     setFavorites((prev) => prev.filter((item) => item !== id));
