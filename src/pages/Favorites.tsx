@@ -1,4 +1,5 @@
 import { useFavorites } from "../context/FavoritesContext";
+import FavoriteItem from "../components/FavoriteItem";
 
 function Favorites() {
   const { favorites } = useFavorites();
@@ -10,11 +11,7 @@ function Favorites() {
       {favorites.length === 0 ? (
         <p>No favorites yet</p>
       ) : (
-        <ul>
-          {favorites.map((id) => (
-            <li key={id}>{id}</li>
-          ))}
-        </ul>
+        favorites.map((id) => <FavoriteItem key={id} id={id} />)
       )}
     </div>
   );
