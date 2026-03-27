@@ -11,10 +11,16 @@ function Favorites() {
       {favorites.length === 0 ? (
         <p>No favorites yet</p>
       ) : (
-        favorites.map((id) => <FavoriteItem key={id} id={id} />)
+        <div>
+          {favorites.map((id) => (
+            <FavoriteItem key={id} id={id} />
+          ))}
+        </div>
       )}
     </div>
   );
 }
+
+
 
 export default Favorites;
