@@ -1,7 +1,10 @@
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../context/FavoritesContext";
 
 function FavoriteItem({ id }: { id: string }) {
+  const { removeFavorite } = useFavorites();
+
   const { data, loading, error } = useFetch<any>(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
   );
@@ -19,6 +22,10 @@ function FavoriteItem({ id }: { id: string }) {
         <h3>{meal.strMeal}</h3>
         <img src={meal.strMealThumb} width="150" />
       </Link>
+
+      <button onClick={() => removeFavorite(meal.idMeal)}>
+        Remove
+      </button>
     </div>
   );
 }
