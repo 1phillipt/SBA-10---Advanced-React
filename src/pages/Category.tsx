@@ -16,7 +16,7 @@ function Category() {
     <div>
       <h1>Category: {name}</h1>
       {data?.meals?.map((meal:any) =>(
-        <p key={meal.idMeal}>{meal.strMeal}</p>
+        <p key={meal.idMeal} >{meal.strMeal}</p>
       ))}
     </div>
   );
