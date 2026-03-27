@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Category } from "../types/category";
 import useFetch from "../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 function Home() {
    
@@ -11,11 +12,14 @@ function Home() {
   if(error) return <p>Error: {error} </p>;
 
   return (
-    <div>
-      {data?.categories.map((categories) => (
-        <p key={categories.idCategory}> {categories.strCategory}</p>
+    <>
+      {data?.categories.map((category) => (
+        <div key={category.idCategory}> 
+        <Link to={`/category/${category.strCategory}`}>
+        {category.strCategory} </Link>
+        </div>
       ))}
-    </div>
+    </>
   );
 }
 export default Home;

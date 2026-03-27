@@ -6,7 +6,7 @@ function useFetch<T>(url: string){
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+    fetch(url)
       .then((res) => {
         if (!res.ok) {
           throw new Error("failed to fetch data");
