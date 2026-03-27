@@ -17,13 +17,15 @@ function FavoriteItem({ id }: { id: string }) {
   if (!meal) return null;
 
   return (
-    <div>
-      <Link to={`/recipe/${meal.idMeal}`}>
-        <h3>{meal.strMeal}</h3>
-        <img src={meal.strMealThumb} width="150" />
+    <div className="bg-white rounded-lg shadow p-4 flex flex-col items-center border border-purple-100 hover:border-purple-400 transition">
+      <Link to={`/recipe/${meal.idMeal}`} className="flex flex-col items-center">
+        <img src={meal.strMealThumb} alt={meal.strMeal} className="w-24 h-24 object-cover rounded-full border-2 border-purple-200 mb-2" />
+        <h3 className="font-semibold text-purple-700 text-lg mt-2">{meal.strMeal}</h3>
       </Link>
-
-      <button onClick={() => removeFavorite(meal.idMeal)}>
+      <button
+        onClick={() => removeFavorite(meal.idMeal)}
+        className="mt-4 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded shadow"
+      >
         Remove
       </button>
     </div>

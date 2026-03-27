@@ -13,16 +13,24 @@ function Category() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h1>Category: {name}</h1>
-
-      {data?.meals?.map((meal: any) => (
-        <div key={meal.idMeal}>
-          <Link to={`/recipe/${meal.idMeal}`}>
-            <p>{meal.strMeal}</p>
+    <div className="category-container">
+      <h1 className="category-title">Category: {name}</h1>
+      <div className="category-grid">
+        {data?.meals?.map((meal: any) => (
+          <Link
+            key={meal.idMeal}
+            to={`/recipe/${meal.idMeal}`}
+            className="category-card"
+          >
+            <img
+              src={meal.strMealThumb}
+              alt={meal.strMeal}
+              className="category-img-large"
+            />
+            <span className="category-label">{meal.strMeal}</span>
           </Link>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

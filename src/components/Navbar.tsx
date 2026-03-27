@@ -1,14 +1,18 @@
-import { Route,Routes, Link } from "react-router-dom";
-import Home from "../pages/Home";
+import { Link } from "react-router-dom";
+
 
 function Navbar() {
   return (
-    <nav>
-      <Link to="/">Home</Link> |{" "}
-      <Link to="/search">Search</Link> |{" "}
-      <Link to="/favorites">Favorites</Link>
+    <nav className="navbar">
+      <span className="navbar-title">Recipe App</span>
+      <div className="navbar-links">
+        <Link className="navbar-link" to="/">Home</Link>
+        <Link className="navbar-link" to="/search">Search</Link>
+        <Link className="navbar-link" to="/favorites">Favorites</Link>
+      </div>
     </nav>
   );
 }
+
 
 export default Navbar;

@@ -15,30 +15,31 @@ function Search() {
 );
 
   return (
-    <div>
-      <h1>Search Recipes</h1>
+    <div className="search-container">
+      <h1 className="search-title">Search Recipes</h1>
       <input
         type="text"
         placeholder="Search recipes..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        className="search-input"
       />
 
-      {loading && <p>Loading...</p>}
-      {error && <p>Error</p>}
+      {loading && <p className="search-loading">Loading...</p>}
+      {error && <p className="search-error">Error</p>}
 
-      <div>
+      <div className="search-grid">
         {data?.meals?.length ? (
           data.meals.map((meal: any) => (
-            <div key={meal.idMeal}>
-              <Link to={`/recipe/${meal.idMeal}`}>
-                <img src={meal.strMealThumb} alt={meal.strMeal} width="300"/>
-                <h3>{meal.strMeal}</h3>
+            <div key={meal.idMeal} className="search-card">
+              <Link to={`/recipe/${meal.idMeal}`} className="search-card-link">
+                <img src={meal.strMealThumb} alt={meal.strMeal} className="search-img" />
+                <h3 className="search-label">{meal.strMeal}</h3>
               </Link>
             </div>
           ))
         ) : (
-          debouncedQuery && !loading && <p>No recipes found.</p>
+          debouncedQuery && !loading && <p className="search-no-results">No recipes found.</p>
         )}
       </div>
     </div>
